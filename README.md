@@ -42,10 +42,17 @@ Open **`src/data/content.js`** and replace the placeholder values:
 
 ## 🌐 Deploying
 
-### GitHub Pages
-1. In `vite.config.js`, set `base` to `'/<your-repo-name>/'` (for a project page)
-   or leave `'/'` (for a `username.github.io` user page or custom domain).
-2. Run `npm run build` and publish the `dist/` folder, or use a GitHub Action.
+### GitHub Pages (already set up)
+A workflow at `.github/workflows/deploy.yml` builds and deploys the site
+automatically on every push to `main`. One-time setup:
+
+1. In the repo settings, go to **Settings → Pages** and set **Source** to
+   **GitHub Actions**.
+2. Merge to `main` (or run the workflow manually) — the site will appear at
+   `https://saharoyani.github.io/io/`.
+
+`vite.config.js` already has `base: '/io/'` to match. If you switch to a
+custom domain or a `username.github.io` user page, change `base` to `'/'`.
 
 ### Netlify / Vercel
 - Build command: `npm run build`
