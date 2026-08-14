@@ -1,15 +1,16 @@
-/* ───────────────────────── Design tokens ───────────────────────── */
+/* ───────────────────────── Design tokens ─────────────────────────
+   Palette: Sage / Muted Greens — growth, tranquility, balance. */
 :root {
-  --accent: #6c5ce7;
-  --accent-2: #00b894;
+  --accent: #6b8f71;
+  --accent-2: #a3b899;
 
-  --bg: #ffffff;
-  --bg-alt: #f5f5fb;
+  --bg: #fdfdfb;
+  --bg-alt: #f2f5ef;
   --surface: #ffffff;
-  --text: #1a1a2e;
-  --text-muted: #5a5a72;
-  --border: #e6e6f0;
-  --shadow: 0 10px 30px -12px rgba(20, 20, 50, 0.18);
+  --text: #222a23;
+  --text-muted: #5c675e;
+  --border: #e2e8df;
+  --shadow: 0 10px 30px -12px rgba(34, 48, 36, 0.18);
 
   --maxw: 1080px;
   --radius: 16px;
@@ -18,12 +19,15 @@
 }
 
 [data-theme='dark'] {
-  --bg: #0e0e1a;
-  --bg-alt: #14142a;
-  --surface: #1a1a30;
-  --text: #f0f0f8;
-  --text-muted: #a0a0c0;
-  --border: #2a2a48;
+  --accent: #8fae90;
+  --accent-2: #b7c9ab;
+
+  --bg: #10150f;
+  --bg-alt: #161d15;
+  --surface: #1c251b;
+  --text: #eef2ec;
+  --text-muted: #a4b2a2;
+  --border: #2c3a2b;
   --shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
 }
 

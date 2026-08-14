@@ -84,7 +84,7 @@ export const portfolio = {
       category: 'Branding',
       description: 'Logo, color palette, and visual language for a fictional studio.',
       image: null,
-      accent: '#6c5ce7',
+      accent: '#6b8f71',
       href: '#',
     },
     {
@@ -92,7 +92,7 @@ export const portfolio = {
       category: 'Print / Layout',
       description: 'A magazine spread exploring grid systems and typography.',
       image: null,
-      accent: '#00b894',
+      accent: '#8aa376',
       href: '#',
     },
     {
@@ -100,7 +100,7 @@ export const portfolio = {
       category: 'UI/UX',
       description: 'Interface design for a productivity app, from wireframe to mockup.',
       image: null,
-      accent: '#e17055',
+      accent: '#5c7d63',
       href: '#',
     },
     {
@@ -108,7 +108,7 @@ export const portfolio = {
       category: 'Illustration',
       description: 'A set of posters combining illustration and motion-inspired type.',
       image: null,
-      accent: '#0984e3',
+      accent: '#9caf88',
       href: '#',
     },
   ],
