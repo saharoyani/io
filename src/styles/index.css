@@ -1,30 +1,31 @@
 /* ───────────────────────── Design tokens ─────────────────────────
-   Palette: Sage / Muted Greens — growth, tranquility, balance. */
+   Palette: Sage / Muted Greens — growth, tranquility, balance.
+   Type: Fraunces (display serif) + Instrument Sans (body/UI). */
 :root {
-  --accent: #6b8f71;
-  --accent-2: #a3b899;
+  --accent: #5f8266;
+  --accent-2: #a9bda0;
 
-  --bg: #fdfdfb;
-  --bg-alt: #f2f5ef;
-  --surface: #ffffff;
-  --text: #222a23;
-  --text-muted: #5c675e;
-  --border: #e2e8df;
-  --shadow: 0 10px 30px -12px rgba(34, 48, 36, 0.18);
+  --bg: #f6f7f2;
+  --bg-alt: #edf0e8;
+  --surface: #fdfdfa;
+  --text: #232b24;
+  --text-muted: #5a655b;
+  --border: #dde3d8;
+  --shadow: 0 10px 30px -12px rgba(35, 43, 36, 0.18);
 
   --maxw: 1080px;
-  --radius: 16px;
-  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'Georgia', 'Times New Roman', serif;
+  --radius: 14px;
+  --font-sans: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Fraunces', Georgia, serif;
 }
 
 [data-theme='dark'] {
   --accent: #8fae90;
   --accent-2: #b7c9ab;
 
-  --bg: #10150f;
-  --bg-alt: #161d15;
-  --surface: #1c251b;
+  --bg: #111711;
+  --bg-alt: #161f16;
+  --surface: #1b241b;
   --text: #eef2ec;
   --text-muted: #a4b2a2;
   --border: #2c3a2b;
@@ -51,6 +52,15 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -68,6 +78,18 @@ img {
   padding: 0 clamp(1.25rem, 4vw, 2.5rem);
 }
 
+/* Reusable leaf glyph — pure CSS, no SVG needed */
+.leaf,
+.section__title::before {
+  content: '';
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-radius: 0 62% 0 62%;
+  transform: rotate(-8deg);
+}
+
 /* ───────────────────────── Buttons ───────────────────────── */
 .btn {
   display: inline-block;
@@ -82,6 +104,13 @@ img {
 
 .btn:hover {
   transform: translateY(-2px);
+}
+
+.btn:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .btn--primary {
@@ -126,9 +155,8 @@ img {
 
 .nav__brand {
   font-family: var(--font-serif);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.25rem;
-  letter-spacing: -0.01em;
 }
 
 .nav__links {
@@ -174,13 +202,13 @@ img {
   border-radius: 2px;
 }
 
-/* ───────────────────────── Hero ───────────────────────── */
+/* ───────────────────────── Hero ─────────────────────────
+   Asymmetric editorial layout: text left, arch portrait right. */
 .hero {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  text-align: center;
   overflow: hidden;
   padding: 7rem 0 4rem;
 }
@@ -189,60 +217,47 @@ img {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(60% 50% at 20% 20%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
-    radial-gradient(50% 50% at 85% 30%, color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 70%);
+    radial-gradient(55% 60% at 82% 30%, color-mix(in srgb, var(--accent-2) 28%, transparent), transparent 70%),
+    radial-gradient(45% 45% at 8% 85%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%);
   z-index: 0;
 }
 
 .hero__inner {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 6vw, 5rem);
   align-items: center;
 }
 
-.hero__avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #fff;
-  font-size: 2.4rem;
-  font-weight: 700;
-  font-family: var(--font-serif);
-  margin-bottom: 1.75rem;
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
-
-.hero__avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--accent);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.hero__eyebrow::after {
+  content: '';
+  flex: 0 1 72px;
+  height: 1px;
+  background: var(--accent-2);
 }
 
 .hero__name {
-  font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 7vw, 4.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.25rem;
+  font-size: clamp(2.8rem, 7.5vw, 5rem);
+  line-height: 1.02;
+  margin-bottom: 1.4rem;
 }
 
 .hero__intro {
-  max-width: 560px;
+  max-width: 34rem;
   font-size: clamp(1.05rem, 2.5vw, 1.2rem);
   color: var(--text-muted);
 }
@@ -251,6 +266,8 @@ img {
   margin-top: 1rem;
   font-size: 0.9rem;
   color: var(--text-muted);
+  font-style: italic;
+  font-family: var(--font-serif);
 }
 
 .hero__actions {
@@ -258,7 +275,6 @@ img {
   gap: 0.9rem;
   margin-top: 2rem;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .hero__socials {
@@ -285,6 +301,34 @@ img {
   transform: translateY(-3px);
 }
 
+/* Arch-shaped portrait — a garden doorway, not a circle avatar */
+.hero__portrait {
+  aspect-ratio: 4 / 5;
+  max-width: 380px;
+  width: 100%;
+  justify-self: end;
+  border-radius: 12rem 12rem var(--radius) var(--radius);
+  background: linear-gradient(160deg, var(--accent) 10%, var(--accent-2) 90%);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+}
+
+.hero__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__portrait span {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 8vw, 5.5rem);
+  font-weight: 550;
+  color: #fff;
+}
+
 /* ───────────────────────── Sections ───────────────────────── */
 .section {
   padding: clamp(4rem, 9vw, 7rem) 0;
@@ -295,23 +339,11 @@ img {
 }
 
 .section__title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   margin-bottom: 2.5rem;
-  position: relative;
-  display: inline-block;
-}
-
-.section__title::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -0.5rem;
-  width: 48px;
-  height: 4px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
 }
 
 /* ───────────────────────── About ───────────────────────── */
@@ -329,10 +361,11 @@ img {
 .about__text p {
   color: var(--text-muted);
   font-size: 1.05rem;
+  max-width: 65ch;
 }
 
 .about__skills h3 {
-  font-size: 1rem;
+  font-size: 1.05rem;
   margin-bottom: 1rem;
 }
 
@@ -377,7 +410,7 @@ img {
 }
 
 .pub__title {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   margin-bottom: 0.35rem;
 }
 
@@ -397,6 +430,7 @@ img {
   color: var(--text-muted);
   font-size: 0.98rem;
   margin-bottom: 1rem;
+  max-width: 65ch;
 }
 
 .pub__links {
@@ -451,11 +485,11 @@ img {
 }
 
 .card__placeholder {
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: var(--font-serif);
+  font-style: italic;
+  letter-spacing: 0.04em;
+  font-size: 1rem;
 }
 
 .card__body {
@@ -471,7 +505,7 @@ img {
 }
 
 .card__title {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   margin: 0.4rem 0 0.5rem;
 }
 
@@ -486,6 +520,10 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.contact .section__title {
+  justify-content: center;
 }
 
 .contact__blurb {
@@ -535,6 +573,18 @@ img {
 }
 
 /* ───────────────────────── Responsive ───────────────────────── */
+@media (max-width: 820px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__portrait {
+    justify-self: start;
+    max-width: 240px;
+    grid-row: 1;
+  }
+}
+
 @media (max-width: 760px) {
   .about__grid {
     grid-template-columns: 1fr;
