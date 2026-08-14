@@ -47,6 +47,9 @@ A workflow at `.github/workflows/deploy.yml` builds and deploys the site
 automatically on every push to `main` — it even enables GitHub Pages on the
 first run. The site lives at `https://saharoyani.github.io/io/`.
 
+`vite.config.js` already has `base: '/io/'` to match. If you switch to a
+custom domain or a `username.github.io` user page, change `base` to `'/'`.
+
 ### Netlify / Vercel
 - Build command: `npm run build`
 - Publish directory: `dist`
